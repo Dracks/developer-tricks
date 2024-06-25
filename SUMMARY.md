@@ -13,3 +13,36 @@ find . -name "*.swift" | entr -s "swift build"
 ```
 
 I've got pending to improve it, as currently doesn't support change adding new files or deleting them. 
+
+
+### Swift exceptions
+
+This I used for the moment in a godot project, the idea is to make easy to work with exceptions with your own exception, thanks to godot, we can catch the line and the file in which a exception is created, the following classes are used: 
+
+```swift
+import SwiftGodot
+
+enum ExceptionCode {
+    case E1000
+}
+
+class Exception {
+    var code: ExceptionCode
+    var msg: String
+    var ctx: [String:Any]
+    var file: StaticString
+    var line: UInt
+
+    init(_ code: ExceptionCode, msg: String, ctx: [String:Any] = [:], file: StaticString = #file, line: UInt = #line) {
+        self.code = code
+        self.msg = msg
+        self.ctx = ctx
+        self.file = file
+        self.line = line
+    }
+
+    func toString()->String {
+        return "\(code): \(self.msg) (\(file):\(line))"
+    }
+}
+```
