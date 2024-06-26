@@ -27,15 +27,13 @@ concurrency:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    runs-on: rust:1.79
     env:
       MDBOOK_VERSION: 0.4.36
     steps:
       - uses: actions/checkout@v4
       - name: Install mdBook
         run: |
-          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
-          rustup update
           cargo install --version ${MDBOOK_VERSION} mdbook
       - name: Setup Pages
         id: pages
