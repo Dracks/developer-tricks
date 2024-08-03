@@ -2,3 +2,6 @@
 title = "Jaume Developer Trips & trick"
 authors = ["Jaume Singla (Dracks)"]
 description = "This will be a collection of tips and tricks I use to develop."
+
+[output.html]
+site-url = "/mdBook/"
